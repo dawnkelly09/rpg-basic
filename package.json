@@ -1,0 +1,15 @@
+{
+  "name": "rpg-basic",
+  "version": "0.0.0",
+  "description": "",
+  "author": "",
+  "license": "MIT",
+  "scripts": {
+    "dev": "bos-workspace dev",
+    "build": "bos-workspace build",
+    "clone": "bos-workspace clone"
+  },
+  "devDependencies": {
+    "bos-workspace": "^0.0.1-alpha.5"
+  }
+}
