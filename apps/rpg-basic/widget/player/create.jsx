@@ -77,12 +77,23 @@ const handleDefaultWeaponChange = (e) => {
 };
 
 const handleAttackChange = (e) => {
-  const newAttack = e.target.value;
-  setPlayer((prevPlayer) => ({
-    ...prevPlayer,
-    metadata: { ...prevPlayer.metadata, attack: newAttack },
-  }));
-};
+  const newValue = parseInt(e.target.value);
+  if (newValue >= 0 && newValue <= 20) {
+    const totalPoints = Object.values(player.metadata).reduce((acc, curr) => acc + curr, 0);
+    if (totalPoints - player.metadata.magic + newValue <= startingStatPoints) {
+        setPlayer(prevPlayer => ({
+            ...prevPlayer,
+            metadata: {
+              ...prevPlayer.metadata,
+              attack: newValue
+            }
+        }));
+    } else {
+        error;
+    }
+  } else {
+    error;
+  };
 
 const handleDefenseChange = (e) => {
   const newDefense = e.target.value;
@@ -270,10 +281,7 @@ return (
           type="number"
           name="attack"
           min="0"
-          max={`${
-            usedStatPoints === startingStatPoints &&
-            (player.metadata.attack ?? 20)
-          }`}
+          max="20"
           placeholder="What is your character's attack level? (0-20)"
           value={player.metadata.attack}
           onChange={handleAttackChange}
@@ -351,4 +359,4 @@ return (
       </div>
     </div>
   </div>
-);
+)};
